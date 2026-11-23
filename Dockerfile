@@ -14,9 +14,7 @@ COPY alembic.ini ./
 COPY alembic ./alembic
 COPY app ./app
 COPY data ./data
-COPY frontend ./frontend
 COPY scripts ./scripts
-COPY .streamlit ./.streamlit
 RUN uv sync --frozen --no-dev
 ENV PATH="/app/.venv/bin:$PATH"
 

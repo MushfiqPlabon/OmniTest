@@ -1,6 +1,6 @@
 # OmniTest
 
-> Curriculum-grounded GED & Digital SAT preparation backend built with FastAPI, async PostgreSQL (`pgvector`), Google Gemini, FastMCP, and Streamlit.
+> Curriculum-grounded GED & Digital SAT preparation backend built with FastAPI, async PostgreSQL (`pgvector`), Google Gemini, and FastMCP.
 
 <p>
   <img src="https://img.shields.io/badge/Python-3.12-blue.svg" height="20" style="height:20px; width:auto; max-width:90px; display:inline-block; vertical-align:middle; margin-right:4px;" alt="Python 3.12" />
@@ -9,13 +9,13 @@
   <img src="https://img.shields.io/badge/License-AGPL--3.0-blue.svg" height="20" style="height:20px; width:auto; max-width:120px; display:inline-block; vertical-align:middle;" alt="License: AGPL-3.0" />
 </p>
 
-[Live API Docs (Swagger)](https://omnitest-6fed.onrender.com/docs) · [Demo Video](https://drive.google.com/file/d/YOUR_VIDEO_ID/view?usp=sharing) · [GitHub Repository](https://github.com/MushfiqPlabon/OmniTest)
+[Live Web App](https://omnitest-1.onrender.com) · [Live API Docs (Swagger)](https://omnitest-6fed.onrender.com/docs) · [Demo Video](https://drive.google.com/file/d/YOUR_VIDEO_ID/view?usp=sharing) · [GitHub Repository](https://github.com/MushfiqPlabon/OmniTest)
 
 ---
 
 ## Overview
 
-OmniTest is an exam-preparation API, AI tutoring agent, and web workspace built for **GED and Digital SAT coaching-center instructors** (who manage study guides, quizzes, and essay prompts) and **self-study students** (who practice quizzes, submit essays for rubric grading, and ask curriculum-grounded questions). Subjects, topics, and essay grading rubrics live as structured data in PostgreSQL, so this prototype can later serve additional exam boards and local-language curricula with minimal core changes.
+OmniTest is an exam-preparation API and AI tutoring agent built for **GED and Digital SAT coaching-center instructors** (who manage study guides, quizzes, and essay prompts) and **self-study students** (who practice quizzes, submit essays for rubric grading, and ask curriculum-grounded questions). Subjects, topics, and essay grading rubrics live as structured data in PostgreSQL, so this prototype can later serve additional exam boards and local-language curricula with minimal core changes.
 
 ### Key Capabilities
 - **Curriculum-Grounded RAG (`pgvector`)**: Splits study guides into `500`-character chunks (`50`-character overlap), embeds them into `384`-dimensional vectors (`gemini-embedding-2`), and queries an HNSW cosine index in PostgreSQL. Explicitly informs users when no matching chunks pass the similarity threshold (`0.70`).
@@ -31,7 +31,7 @@ OmniTest is an exam-preparation API, AI tutoring agent, and web workspace built 
 ```mermaid
 flowchart TD
     subgraph Clients["Clients"]
-        UI["Streamlit Web UI (:8501)"]
+        UI["Web Frontend (frontend branch)"]
         MCPClient["MCP Client (IDE / CLI Agent)"]
     end
 
@@ -108,17 +108,14 @@ app/
 ├── integrations/       # Retry-enabled Gemini client, structured JSON, ToolSpec gateway, 384d embeddings
 ├── mcp/                # FastMCP server (server.py) + ASGI Bearer auth middleware (auth.py)
 └── modules/            # auth, materials, quizzes, essays, chat (controllers/services/repos/schemas/models/deps)
-.streamlit/             # High-contrast light/dark Streamlit theme config (config.toml)
-frontend/               # Streamlit UI (app.py router, composed frontend/api/ client, modular views/)
 alembic/                # Async Alembic schema migration (0001_initial_schema.py with 11 tables + HNSW index)
 scripts/                # Idempotent seeding (seed.py + scripts/data/) and markdown ingestion (ingest.py)
 tests/
 ├── unit/               # 21 offline unit tests (filters, security, grading, tool isolation, embeddings, errors, MCP auth)
-├── integration/        # 36 live PostgreSQL + pgvector + Gemini integration tests across 6 modules
-└── e2e/                # Playwright browser tests for the Streamlit UI
+└── integration/        # 36 live PostgreSQL + pgvector + Gemini integration tests across 6 modules
 ```
 
-All `80` non-`__init__.py` source files across `app/`, `frontend/`, and `scripts/` are kept concise (`<= 150` lines each) with module and public-function docstrings.
+All `58` non-`__init__.py` source files across `app/` and `scripts/` are kept concise (`<= 150` lines each) with module and public-function docstrings.
 
 ---
 
@@ -147,11 +144,11 @@ DATABASE_URL=postgresql+asyncpg://omnitest:devpassword@localhost:5432/omnitest
 ```
 
 ### 2. Run Full Stack with Docker Compose
-Starts **PostgreSQL (`pgvector/pgvector:pg16`)**, **FastAPI Backend (`:8000`)**, and **Streamlit Frontend (`:8501`)**:
+Starts **PostgreSQL (`pgvector/pgvector:pg16`)** and **FastAPI Backend (`:8000`)**:
 ```bash
 docker compose up --build
 ```
-On boot, the backend runs `alembic upgrade head`, seeds domain data (`python -m scripts.seed`), ingests `data/materials/*.md` (`python -m scripts.ingest`), and starts Swagger UI at [http://localhost:8000/docs](http://localhost:8000/docs) and the web UI at [http://localhost:8501](http://localhost:8501).
+On boot, the backend runs `alembic upgrade head`, seeds domain data (`python -m scripts.seed`), ingests `data/materials/*.md` (`python -m scripts.ingest`), and starts Swagger UI at [http://localhost:8000/docs](http://localhost:8000/docs).
 
 ### 3. Run Locally (Without Docker)
 ```bash
@@ -163,11 +160,8 @@ uv run alembic upgrade head
 uv run python -m scripts.seed
 uv run python -m scripts.ingest
 
-# Terminal 1: API & FastMCP backend
+# Start API & FastMCP backend
 uv run uvicorn app.main:app --reload
-
-# Terminal 2: Streamlit web UI
-uv run streamlit run frontend/app.py
 ```
 
 ---
@@ -274,7 +268,7 @@ uv run pytest tests/integration -v
 # Lint, format, and type check
 uvx ruff check .
 uvx ruff format --check .
-uvx mypy --explicit-package-bases --python-executable .venv/bin/python --ignore-missing-imports app frontend scripts
+uvx mypy --explicit-package-bases --python-executable .venv/bin/python --ignore-missing-imports app scripts
 ```
 
 ---

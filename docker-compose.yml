@@ -28,7 +28,7 @@ services:
       GEMINI_MODEL: ${GEMINI_MODEL:-gemini-3.1-flash-lite}
       GEMINI_API_VERSION: ${GEMINI_API_VERSION:-v1}
       GEMINI_EMBEDDING_MODEL: ${GEMINI_EMBEDDING_MODEL:-gemini-embedding-2}
-      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:8501}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:5173}
       ENABLE_DEMO_ACCOUNTS: ${ENABLE_DEMO_ACCOUNTS:-true}
       ENVIRONMENT: development
       LOG_LEVEL: INFO
@@ -49,21 +49,6 @@ services:
              python -m scripts.seed &&
              python -m scripts.ingest &&
              exec uvicorn app.main:app --host 0.0.0.0 --port 8000"
-
-  frontend:
-    build: .
-    container_name: omnitest_frontend
-    restart: unless-stopped
-    environment:
-      API_BASE_URL: http://backend:8000/api/v1
-      SHOW_DEMO_LOGIN: ${SHOW_DEMO_LOGIN:-true}
-    ports:
-      - "8501:8501"
-    depends_on:
-      backend:
-        condition: service_healthy
-    command: >
-      sh -c "exec streamlit run frontend/app.py --server.port 8501 --server.address 0.0.0.0 --server.headless true"
 
 volumes:
   pgdata:

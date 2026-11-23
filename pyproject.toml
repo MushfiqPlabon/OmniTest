@@ -1,7 +1,7 @@
 [project]
 name = "omnitest"
 version = "0.1.0"
-description = "OmniTest — GED/SAT AI Prep Platform (FastAPI, PostgreSQL + pgvector, Gemini, FastMCP, Streamlit)"
+description = "OmniTest — GED/SAT AI Prep Backend (FastAPI, PostgreSQL + pgvector, Gemini, FastMCP)"
 readme = "README.md"
 license = "AGPL-3.0-only"
 authors = [{ name = "Mushfiqur Rahman Plaban" }]
@@ -20,7 +20,6 @@ dependencies = [
     "pydantic-settings>=2.5.0",
     "pyjwt>=2.9.0",
     "sqlalchemy[asyncio]>=2.0.35",
-    "streamlit>=1.50.0",
 ]
 
 [build-system]
@@ -35,18 +34,14 @@ dev = [
     "pytest>=9.2.0",
     "pytest-asyncio>=1.5.0",
     "python-dotenv>=1.2.4",
-    "playwright>=1.65.2",
-    "pytest-playwright>=0.10.0",
 ]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "function"
 testpaths = ["tests/unit"]
-norecursedirs = ["tests/e2e"]
 markers = [
     "integration: live integration tests requiring PostgreSQL and Gemini API",
-    "e2e: browser Playwright tests requiring running Streamlit and FastAPI servers",
 ]
 
 [tool.ruff]
