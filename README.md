@@ -9,7 +9,7 @@
   <img src="https://img.shields.io/badge/License-AGPL--3.0-blue.svg" height="20" style="height:20px; width:auto; max-width:120px; display:inline-block; vertical-align:middle;" alt="License: AGPL-3.0" />
 </p>
 
-[Live API Docs (Swagger)](https://omnitest-backend.onrender.com/docs) · [Demo Video](https://drive.google.com/file/d/YOUR_VIDEO_ID/view?usp=sharing) · [GitHub Repository](https://github.com/MushfiqPlabon/OmniTest)
+[Live API Docs (Swagger)](https://omnitest-6fed.onrender.com/docs) · [Demo Video](https://drive.google.com/file/d/YOUR_VIDEO_ID/view?usp=sharing) · [GitHub Repository](https://github.com/MushfiqPlabon/OmniTest)
 
 ---
 
