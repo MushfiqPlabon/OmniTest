@@ -52,7 +52,7 @@ export function AuthProvider(props: { children: JSX.Element }) {
   };
 
   configureApiAuth(
-    () => token(),
+    () => untrack(token),
     () => persistToken(null),
   );
 
