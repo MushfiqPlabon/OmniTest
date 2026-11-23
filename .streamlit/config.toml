@@ -1,0 +1,21 @@
+[theme]
+base = "light"
+primaryColor = "#2563EB"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F8FAFC"
+textColor = "#0F172A"
+showWidgetBorder = true
+baseRadius = "0.5rem"
+buttonRadius = "0.5rem"
+
+[theme.dark]
+primaryColor = "#60A5FA"
+backgroundColor = "#0F172A"
+secondaryBackgroundColor = "#1E293B"
+textColor = "#F8FAFC"
+showWidgetBorder = true
+baseRadius = "0.5rem"
+buttonRadius = "0.5rem"
+
+[browser]
+gatherUsageStats = false
