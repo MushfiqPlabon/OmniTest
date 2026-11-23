@@ -1,1 +1,0 @@
-"""OmniTest backend application package."""

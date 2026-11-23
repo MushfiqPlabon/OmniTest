@@ -1,0 +1,152 @@
+{
+  "version": 2,
+  "skills": {
+    "accessibility-engineering": {
+      "source": "addyosmani/agent-skills",
+      "commit": "8c99fa36d90068c82d547f7c12a9d67a3e95f4ee",
+      "sourceType": "github",
+      "skillPath": "skills/accessibility-engineering/SKILL.md",
+      "computedHash": "de5908a027e301f24ad81489207853d9889ccd5ff58140f5ddcd3d4afeecfc27"
+    },
+    "algorithmic-art": {
+      "source": "anthropics/skills",
+      "commit": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba",
+      "sourceType": "github",
+      "skillPath": "skills/algorithmic-art/SKILL.md",
+      "computedHash": "4a85abfeaa09f2dd2c4b76c85d57b65f61dc10d55c3cca245989cee8897c2be5"
+    },
+    "brand-guidelines": {
+      "source": "anthropics/skills",
+      "commit": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba",
+      "sourceType": "github",
+      "skillPath": "skills/brand-guidelines/SKILL.md",
+      "computedHash": "10067cdd9be9cd5d97c741fc6e25830135afa0e11cc71e567b75763e26d08799"
+    },
+    "bun-runtime": {
+      "source": "affaan-m/ECC",
+      "commit": "4adeee6732a12d1540f49a4d50a38ce8c97f9a53",
+      "sourceType": "github",
+      "skillPath": "skills/bun-runtime/SKILL.md",
+      "computedHash": "920e3f890c6a03d90cc0133d0a15ea8965f992ad48819e483b31a36b69377f2f"
+    },
+    "canvas-design": {
+      "source": "anthropics/skills",
+      "commit": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba",
+      "sourceType": "github",
+      "skillPath": "skills/canvas-design/SKILL.md",
+      "computedHash": "1866477474e694f562261008bb6a817e53f027b6347b062fbd1e2ee2eb83f20d"
+    },
+    "design-taste-frontend": {
+      "source": "Leonxlnx/taste-skill",
+      "commit": "6c0b5c78f5d31776e2210305abaa210cdc0030bf",
+      "sourceType": "github",
+      "skillPath": "skills/taste-skill/SKILL.md",
+      "computedHash": "b10eab0a9684cd09cf34c31ef04a3bf530a5f4404422f9c520d42372d670c7fc"
+    },
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "commit": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba",
+      "sourceType": "github",
+      "skillPath": "skills/frontend-design/SKILL.md",
+      "computedHash": "83485963700bcf11d5bf78118facb301676b69d918fee2e45a95e7f1a2840f6c"
+    },
+    "frontend-design-direction": {
+      "source": "affaan-m/ECC",
+      "commit": "4adeee6732a12d1540f49a4d50a38ce8c97f9a53",
+      "sourceType": "github",
+      "skillPath": "skills/frontend-design-direction/SKILL.md",
+      "computedHash": "f7b6c8d0883c750ee2fa2e4572c07bfe25699fd338305a2d9f7061b76e1a2d1a"
+    },
+    "frontend-ui-engineering": {
+      "source": "addyosmani/agent-skills",
+      "commit": "8c99fa36d90068c82d547f7c12a9d67a3e95f4ee",
+      "sourceType": "github",
+      "skillPath": "skills/frontend-ui-engineering/SKILL.md",
+      "computedHash": "1bea3daa371bfb466445f5a33ee063f2aadf27469b2308a340e803398bcb4251"
+    },
+    "liquid-glass-design": {
+      "source": "affaan-m/ECC",
+      "commit": "4adeee6732a12d1540f49a4d50a38ce8c97f9a53",
+      "sourceType": "github",
+      "skillPath": "skills/liquid-glass-design/SKILL.md",
+      "computedHash": "2f9186dd3f5f8a9f480e90986c926aac0f3584f67b7dc9f20d90ddb874745b8f"
+    },
+    "modern-javascript-patterns": {
+      "source": "wshobson/agents",
+      "commit": "51b9ae3ac68d9c236549a9b57f5dca7e6c0c168c",
+      "sourceType": "github",
+      "skillPath": "plugins/javascript-typescript/skills/modern-javascript-patterns/SKILL.md",
+      "computedHash": "9b0a9226c7006b041f30969d055e1ed9ef8267cc1cf59819552503ff477cae36"
+    },
+    "performance-optimization": {
+      "source": "addyosmani/agent-skills",
+      "commit": "8c99fa36d90068c82d547f7c12a9d67a3e95f4ee",
+      "sourceType": "github",
+      "skillPath": "skills/performance-optimization/SKILL.md",
+      "computedHash": "cfa0c39804554198a33e3beb2b0f920a1b468bb2e066822e1d08f4abeda3db33"
+    },
+    "security-and-hardening": {
+      "source": "addyosmani/agent-skills",
+      "commit": "8c99fa36d90068c82d547f7c12a9d67a3e95f4ee",
+      "sourceType": "github",
+      "skillPath": "skills/security-and-hardening/SKILL.md",
+      "computedHash": "9bfc78e1ee2e23f3d226f610d8ed8e0cf6fb4f7e90a44db0a41b636735a24767"
+    },
+    "solidjs-v2": {
+      "source": "khmm12/solidjs-v2-skills",
+      "commit": "7cfa176aee0ee2e7763d9a77b03f87fdb7f64bdb",
+      "sourceType": "github",
+      "skillPath": "skills/solidjs-v2/SKILL.md",
+      "computedHash": "3a717e4214c08159fe31530aed8a07a4a00a43033ec0d3ca3fd834c0c51c91f1"
+    },
+    "solidjs-v2-migration": {
+      "source": "khmm12/solidjs-v2-skills",
+      "commit": "7cfa176aee0ee2e7763d9a77b03f87fdb7f64bdb",
+      "sourceType": "github",
+      "skillPath": "skills/solidjs-v2-migration/SKILL.md",
+      "computedHash": "98e93f85debcf655d41faf59e144726b99772ed7ebcda618bb7b53ae2aca4e00"
+    },
+    "solidjs-v2-reviewer": {
+      "source": "khmm12/solidjs-v2-skills",
+      "commit": "7cfa176aee0ee2e7763d9a77b03f87fdb7f64bdb",
+      "sourceType": "github",
+      "skillPath": "skills/solidjs-v2-reviewer/SKILL.md",
+      "computedHash": "53cbc1ab4cbaad8611a5298c29d9dd1e823ae5be3ba3e7cb090a6668d53f4a9c"
+    },
+    "tailwind-design-system": {
+      "source": "wshobson/agents",
+      "commit": "51b9ae3ac68d9c236549a9b57f5dca7e6c0c168c",
+      "sourceType": "github",
+      "skillPath": "plugins/frontend-mobile-development/skills/tailwind-design-system/SKILL.md",
+      "computedHash": "c807f0c9619e8c389879f55846c2e395956f1073ab6d01a93fbb30b340015ab1"
+    },
+    "uv-package-manager": {
+      "source": "wshobson/agents",
+      "commit": "51b9ae3ac68d9c236549a9b57f5dca7e6c0c168c",
+      "sourceType": "github",
+      "skillPath": "plugins/python-development/skills/uv-package-manager/SKILL.md",
+      "computedHash": "adecd8faec01ee261801680942c6a97159d73c3ae9f355568cf9426edc61c1c3"
+    },
+    "vite-patterns": {
+      "source": "affaan-m/ECC",
+      "commit": "4adeee6732a12d1540f49a4d50a38ce8c97f9a53",
+      "sourceType": "github",
+      "skillPath": "skills/vite-patterns/SKILL.md",
+      "computedHash": "b0b6fbb9657445c7f0708cb8d185aa735f574a18877aa790bc530942208c8462"
+    },
+    "web-component-design": {
+      "source": "wshobson/agents",
+      "commit": "51b9ae3ac68d9c236549a9b57f5dca7e6c0c168c",
+      "sourceType": "github",
+      "skillPath": "plugins/ui-design/skills/web-component-design/SKILL.md",
+      "computedHash": "94391577833fb07e17f03dc4438645a0e3bc056c883083467e8f723cd04cb260"
+    },
+    "web-design-guidelines": {
+      "source": "vercel-labs/agent-skills",
+      "commit": "5a37a6329fbad3666c3207392a6a7c0110e92efb",
+      "sourceType": "github",
+      "skillPath": "skills/web-design-guidelines/SKILL.md",
+      "computedHash": "5994e4cfd86144903d2ba750f862b9e36af15e3297aac983679e347b99f6cb71"
+    }
+  }
+}
