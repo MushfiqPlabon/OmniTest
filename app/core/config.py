@@ -27,7 +27,7 @@ class Settings(BaseSettings):
     GEMINI_API_KEY: str = Field(..., min_length=1, description="Google Gemini API key")
 
     # Free-tier-friendly defaults; `.env` and OS environment variables override these.
-    GEMINI_MODEL: str = Field(default="gemini-3.1-flash-lite", description="Gemini chat and structured output model")
+    GEMINI_MODEL: str = Field(default="gemini-3.5-flash-lite", description="Gemini chat and structured output model")
     GEMINI_API_VERSION: str = Field(default="v1", description="Gemini API version (e.g. v1)")
     GEMINI_EMBEDDING_MODEL: str = Field(default="gemini-embedding-2", description="Gemini text embedding model")
 

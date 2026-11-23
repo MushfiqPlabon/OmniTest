@@ -25,7 +25,7 @@ services:
       DATABASE_URL: postgresql+asyncpg://omnitest:devpassword@postgres:5432/omnitest
       SECRET_KEY: ${SECRET_KEY:-change-this-to-a-super-secret-random-key-at-least-32-chars}
       GEMINI_API_KEY: ${GEMINI_API_KEY:-dev-key}
-      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-3.1-flash-lite}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-3.5-flash-lite}
       GEMINI_API_VERSION: ${GEMINI_API_VERSION:-v1}
       GEMINI_EMBEDDING_MODEL: ${GEMINI_EMBEDDING_MODEL:-gemini-embedding-2}
       CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:5173}

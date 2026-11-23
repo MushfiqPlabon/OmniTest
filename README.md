@@ -46,7 +46,7 @@ flowchart TD
     end
 
     subgraph Integrations["AI Integrations (app/integrations/)"]
-        LLM["Gemini Chat, Tools & Structured JSON (gemini-3.1-flash-lite)"]
+        LLM["Gemini Chat, Tools & Structured JSON (gemini-3.5-flash-lite)"]
         EMBED["Gemini Embeddings (gemini-embedding-2, 384d)"]
     end
 
@@ -133,7 +133,7 @@ cp .env.example .env
 Update `.env` with your Gemini API key and a 32+ character `SECRET_KEY`:
 ```ini
 GEMINI_API_KEY=your-gemini-api-key-here
-GEMINI_MODEL=gemini-3.1-flash-lite
+GEMINI_MODEL=gemini-3.5-flash-lite
 GEMINI_API_VERSION=v1
 GEMINI_EMBEDDING_MODEL=gemini-embedding-2
 SECRET_KEY=change-this-to-a-super-secret-random-key-at-least-32-chars
