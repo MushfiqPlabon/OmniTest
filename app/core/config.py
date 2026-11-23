@@ -42,7 +42,7 @@ class Settings(BaseSettings):
     ALGORITHM: Literal["HS256", "HS384", "HS512"] = "HS256"
 
     # Security & demo toggles
-    CORS_ORIGINS: str = Field(default="http://localhost:8501", description="Comma-separated allowed CORS origins")
+    CORS_ORIGINS: str = Field(default="http://localhost:5173", description="Comma-separated allowed CORS origins")
     ENABLE_DEMO_ACCOUNTS: bool = Field(default=True, description="Seed default demo accounts in non-production setups")
 
     # App server
