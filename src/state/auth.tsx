@@ -39,8 +39,15 @@ export function AuthProvider(props: { children: JSX.Element }) {
     }
   };
 
+  const resetHomeUrl = () => {
+    if (typeof window !== "undefined" && window.location.pathname !== "/") {
+      window.history.replaceState(null, "", "/");
+    }
+  };
+
   const logout = () => {
     if (untrack(token)) toast.push("Signed out.", "info");
+    resetHomeUrl();
     persistToken(null);
   };
 
@@ -63,6 +70,7 @@ export function AuthProvider(props: { children: JSX.Element }) {
 
   const login = async (email: string, password: string) => {
     const data = await unwrap(api.POST("/api/v1/auth/login", { body: { email, password } }), true);
+    resetHomeUrl();
     persistToken(data.access_token);
     toast.push(`Signed in as ${data.email}`, "success");
   };
@@ -72,6 +80,7 @@ export function AuthProvider(props: { children: JSX.Element }) {
       api.POST("/api/v1/auth/register", { body: { email, password, full_name: fullName } }),
       true,
     );
+    resetHomeUrl();
     persistToken(data.access_token);
     toast.push("Account created! Welcome to OmniTest.", "success");
   };

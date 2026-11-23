@@ -8,6 +8,7 @@ import { AppShell } from "@/components/AppShell";
 import { ErrorBanner, LoadingSkeleton } from "@/components/States";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { ToastHost } from "@/components/ToastHost";
+import { AdminPage } from "@/pages/AdminPage";
 import { AnalyticsPage } from "@/pages/AnalyticsPage";
 import { AuthPage } from "@/pages/AuthPage";
 import { ChatPage } from "@/pages/ChatPage";
@@ -18,15 +19,25 @@ import { AuthProvider, useAuth } from "@/state/auth";
 import { initThemeSync } from "@/state/theme";
 import { ToastProvider } from "@/state/toast";
 
+function HomeRoute() {
+  const auth = useAuth();
+  return (
+    <Show when={auth.isAdmin()} fallback={<ChatPage />}>
+      <AdminPage />
+    </Show>
+  );
+}
+
 const AppRouter = createRouter({
   routes: defineRoutes([
-    { path: "/", component: ChatPage },
+    { path: "/", component: HomeRoute },
+    { path: "/admin", component: AdminPage },
     { path: "/chat", component: ChatPage },
     { path: "/quizzes", component: QuizzesPage },
     { path: "/essays", component: EssaysPage },
     { path: "/materials", component: MaterialsPage },
     { path: "/analytics", component: AnalyticsPage },
-    { path: "*", component: ChatPage },
+    { path: "*", component: HomeRoute },
   ]),
 });
 

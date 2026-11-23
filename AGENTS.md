@@ -30,9 +30,9 @@
 - `src/state/` — `auth.tsx` (JWT persistence & async `user` memo), `theme.ts` (`schemePref`, `resolvedScheme`, `cycleColorScheme`, `initThemeSync`), `filters.ts` (`usePagedFilters` URL search-param hook), `toast.tsx` (transient notifications).
 - `src/styles/` — `tokens.css` (OKLCH light/dark palette & `@theme inline` tokens) and `glass.css` (`.glass-surface`, `.reading-surface`, `.glass-btn`, `.card-hover`, `.glass-dialog`, `.tabular-nums`, reduced-motion/transparency rules).
 - `src/components/`:
-  - Shared: `AppShell.tsx`, `ThemeToggle.tsx`, `GlassDialog.tsx`, `MarkdownView.tsx`, `FilterBar.tsx`, `Pagination.tsx`, `ScoreChart.tsx`, `States.tsx`, `ToastHost.tsx`.
-  - Feature subfolders: `chat/ChatMessageList.tsx`, `quizzes/{QuizRunner,QuizResults,QuizAdminDialog}.tsx`, `essays/{EssayPromptCard,EssayWorkspace,EssayFeedback,EssayAdminDialog}.tsx`, `materials/{MaterialReader,MaterialAdminDialog}.tsx`, `analytics/chartConfigs.ts`.
-- `src/pages/` — `AuthPage.tsx`, `ChatPage.tsx`, `QuizzesPage.tsx`, `EssaysPage.tsx`, `MaterialsPage.tsx`, `AnalyticsPage.tsx`.
+  - Shared: `AppShell.tsx`, `NavLinks.tsx`, `ThemeToggle.tsx`, `GlassDialog.tsx`, `MarkdownView.tsx`, `FilterBar.tsx`, `Pagination.tsx`, `ScoreChart.tsx`, `States.tsx`, `ToastHost.tsx`.
+  - Feature subfolders: `admin/{AdminBanner,AdminMaterialsTable,AdminPromptsTable,AdminQuizzesPanel,AdminTabs,QuizAttemptsDialog,QuizEditDialog}.tsx`, `analytics/{chartConfigs.ts,RecentActivity.tsx}`, `auth/AuthHero.tsx`, `chat/ChatMessageList.tsx`, `quizzes/{QuizRunner,QuizResults,QuizAdminDialog}.tsx`, `essays/{EssayPromptCard,EssayWorkspace,EssayFeedback,EssayHistoryList,EssayRubricFields,EssayAdminDialog}.tsx`, `materials/{MaterialReader,MaterialCard,MaterialForm,MaterialAdminActions,MaterialAdminDialog,materialSave.ts}`.
+- `src/pages/` — `AuthPage.tsx`, `AdminPage.tsx`, `ChatPage.tsx`, `QuizzesPage.tsx`, `EssaysPage.tsx`, `MaterialsPage.tsx`, `AnalyticsPage.tsx`.
 
 ## 4. SolidJS 2.0.3 Patterns & Dev-Mode Invariants
 
