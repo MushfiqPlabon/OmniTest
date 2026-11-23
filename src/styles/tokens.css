@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light dark;
+
+  --canvas-light: oklch(97.5% 0.008 210);
+  --canvas-dark: oklch(14% 0.018 220);
+
+  --surface-light: oklch(99% 0.004 210);
+  --surface-dark: oklch(19% 0.018 220);
+
+  --glass-light: oklch(99% 0.006 210 / 0.72);
+  --glass-dark: oklch(21% 0.022 220 / 0.72);
+
+  --edge-light: oklch(86% 0.014 210 / 0.78);
+  --edge-dark: oklch(34% 0.025 220 / 0.65);
+
+  --ink-light: oklch(19% 0.022 225);
+  --ink-dark: oklch(95% 0.008 210);
+
+  --muted-light: oklch(46% 0.02 220);
+  --muted-dark: oklch(71% 0.015 215);
+
+  --brand-light: oklch(52% 0.125 192);
+  --brand-dark: oklch(72% 0.13 188);
+
+  --brand-ink-light: oklch(99% 0.004 190);
+  --brand-ink-dark: oklch(15% 0.025 200);
+
+  --accent-light: oklch(64% 0.155 68);
+  --accent-dark: oklch(78% 0.14 74);
+
+  --ok-light: oklch(52% 0.14 156);
+  --ok-dark: oklch(72% 0.145 156);
+
+  --danger-light: oklch(54% 0.19 25);
+  --danger-dark: oklch(70% 0.18 25);
+
+  --ui-canvas: var(--canvas-light);
+  --ui-surface: var(--surface-light);
+  --ui-glass: var(--glass-light);
+  --ui-edge: var(--edge-light);
+  --ui-ink: var(--ink-light);
+  --ui-muted: var(--muted-light);
+  --ui-brand: var(--brand-light);
+  --ui-brand-ink: var(--brand-ink-light);
+  --ui-accent: var(--accent-light);
+  --ui-ok: var(--ok-light);
+  --ui-danger: var(--danger-light);
+
+  --sb-track: #e6eef0;
+  --sb-thumb: #7b8f94;
+
+  &:has(> head > meta[name="color-scheme"][content="dark"]) {
+    color-scheme: dark;
+  }
+
+  &:has(> head > meta[name="color-scheme"][content="light"]) {
+    color-scheme: light;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not(:has(> head > meta[name="color-scheme"][content="light"])) {
+    --ui-canvas: var(--canvas-dark);
+    --ui-surface: var(--surface-dark);
+    --ui-glass: var(--glass-dark);
+    --ui-edge: var(--edge-dark);
+    --ui-ink: var(--ink-dark);
+    --ui-muted: var(--muted-dark);
+    --ui-brand: var(--brand-dark);
+    --ui-brand-ink: var(--brand-ink-dark);
+    --ui-accent: var(--accent-dark);
+    --ui-ok: var(--ok-dark);
+    --ui-danger: var(--danger-dark);
+    --sb-track: #182328;
+    --sb-thumb: #688088;
+  }
+}
+
+@supports (color: light-dark(white, black)) {
+  :root {
+    --ui-canvas: light-dark(var(--canvas-light), var(--canvas-dark));
+    --ui-surface: light-dark(var(--surface-light), var(--surface-dark));
+    --ui-glass: light-dark(var(--glass-light), var(--glass-dark));
+    --ui-edge: light-dark(var(--edge-light), var(--edge-dark));
+    --ui-ink: light-dark(var(--ink-light), var(--ink-dark));
+    --ui-muted: light-dark(var(--muted-light), var(--muted-dark));
+    --ui-brand: light-dark(var(--brand-light), var(--brand-dark));
+    --ui-brand-ink: light-dark(var(--brand-ink-light), var(--brand-ink-dark));
+    --ui-accent: light-dark(var(--accent-light), var(--accent-dark));
+    --ui-ok: light-dark(var(--ok-light), var(--ok-dark));
+    --ui-danger: light-dark(var(--danger-light), var(--danger-dark));
+    --sb-track: light-dark(#e6eef0, #182328);
+    --sb-thumb: light-dark(#7b8f94, #688088);
+  }
+}
+
+@theme inline {
+  --color-canvas: var(--ui-canvas);
+  --color-surface: var(--ui-surface);
+  --color-glass: var(--ui-glass);
+  --color-edge: var(--ui-edge);
+  --color-ink: var(--ui-ink);
+  --color-muted: var(--ui-muted);
+  --color-brand: var(--ui-brand);
+  --color-brand-ink: var(--ui-brand-ink);
+  --color-accent: var(--ui-accent);
+  --color-ok: var(--ui-ok);
+  --color-danger: var(--ui-danger);
+
+  --font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+html {
+  accent-color: var(--ui-brand);
+  scrollbar-color: var(--sb-thumb) var(--sb-track);
+}
+
+@supports not (scrollbar-color: auto) {
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--sb-thumb);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--sb-track);
+  }
+}
