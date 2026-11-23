@@ -38,10 +38,3 @@ env/
 .vscode/
 *.swp
 *.swo
-
-# Testing & Coverage
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
-.coverage
-htmlcov/

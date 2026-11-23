@@ -110,9 +110,6 @@ app/
 └── modules/            # auth, materials, quizzes, essays, chat (controllers/services/repos/schemas/models/deps)
 alembic/                # Async Alembic schema migration (0001_initial_schema.py with 11 tables + HNSW index)
 scripts/                # Idempotent seeding (seed.py + scripts/data/) and markdown ingestion (ingest.py)
-tests/
-├── unit/               # 21 offline unit tests (filters, security, grading, tool isolation, embeddings, errors, MCP auth)
-└── integration/        # 36 live PostgreSQL + pgvector + Gemini integration tests across 6 modules
 ```
 
 All `58` non-`__init__.py` source files across `app/` and `scripts/` are kept concise (`<= 150` lines each) with module and public-function docstrings.
@@ -253,23 +250,6 @@ uv run python -m app.mcp.server
 | :--- | :--- | :--- | :--- |
 | **Admin** | `admin@omnitest.com` | `AdminPass123!` | Full domain CRUD writes, material upload/ingestion, quiz & prompt creation |
 | **Student** | `student@omnitest.com` | `StudentPass123!` | Taking quizzes, submitting essays, RAG chat tutor, `/mcp` Bearer access |
-
----
-
-## Testing & Quality Checks
-
-```bash
-# Fast offline unit tests (default pytest suite)
-uv run pytest
-
-# Live full-stack integration suite (requires PostgreSQL + valid GEMINI_API_KEY)
-uv run pytest tests/integration -v
-
-# Lint, format, and type check
-uvx ruff check .
-uvx ruff format --check .
-uvx mypy --explicit-package-bases --python-executable .venv/bin/python --ignore-missing-imports app scripts
-```
 
 ---
 

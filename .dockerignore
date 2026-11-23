@@ -39,14 +39,6 @@ env/
 *.swp
 *.swo
 
-# Testing & Coverage
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
-.coverage
-htmlcov/
-tests/
-
 # Version Control & Docs
 .git/
 README.md

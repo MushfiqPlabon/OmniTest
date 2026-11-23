@@ -7,28 +7,22 @@ Creates four building blocks shared across the backend:
 4. `get_db_session()`: FastAPI dependency providing one request-scoped session.
 """
 
-import os
 from collections.abc import AsyncGenerator
 from datetime import UTC, datetime
 from typing import Any
 
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 from sqlalchemy.orm import DeclarativeBase
-from sqlalchemy.pool import NullPool
 
 from app.core.config import settings
 
-# Pytest opens a fresh asyncio event loop per test; NullPool avoids cross-loop errors.
+# Recycle idle connections every 4 minutes and ping before checkout on cloud Postgres.
 engine_kwargs: dict[str, Any] = {
     "echo": settings.LOG_LEVEL.upper() == "DEBUG",
     "future": True,
+    "pool_pre_ping": True,
+    "pool_recycle": 240,
 }
-if os.getenv("ENVIRONMENT") == "testing" or settings.ENVIRONMENT == "testing":
-    engine_kwargs["poolclass"] = NullPool
-else:
-    # Recycle idle connections every 4 minutes and ping before checkout on cloud Postgres.
-    engine_kwargs["pool_pre_ping"] = True
-    engine_kwargs["pool_recycle"] = 240
 
 engine = create_async_engine(settings.DATABASE_URL, **engine_kwargs)
 

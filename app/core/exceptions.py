@@ -3,7 +3,6 @@
 Why this exists:
 Services raise domain errors (`NotFoundError`, `ConflictError`, etc.) without
 importing HTTP response logic. FastAPI maps every failure to `ErrorResponse` JSON.
-Each handler uses `assert isinstance(exc, ...)` only to narrow Starlette's generic `Exception` type for `mypy`.
 """
 
 import logging
