@@ -9,8 +9,6 @@
   <img src="https://img.shields.io/badge/License-AGPL--3.0-blue.svg" height="20" style="height:20px; width:auto; max-width:120px; display:inline-block; vertical-align:middle;" alt="License: AGPL-3.0" />
 </p>
 
-[Live Web App](https://omnitest-1.onrender.com) · [Live API Docs (Swagger)](https://omnitest-6fed.onrender.com/docs) · [Demo Video](https://drive.google.com/file/d/YOUR_VIDEO_ID/view?usp=sharing) · [GitHub Repository](https://github.com/MushfiqPlabon/OmniTest)
-
 ---
 
 ## Overview
@@ -20,7 +18,7 @@ OmniTest is an exam-preparation API and AI tutoring agent built for **GED and Di
 ### Key Capabilities
 - **Curriculum-Grounded RAG (`pgvector`)**: Splits study guides into `500`-character chunks (`50`-character overlap), embeds them into `384`-dimensional vectors (`gemini-embedding-2`), and queries an HNSW cosine index in PostgreSQL. Explicitly informs users when no matching chunks pass the similarity threshold (`0.70`).
 - **Schema-Validated Tool Calling**: Gemini routes requests through Pydantic-validated `ToolSpec` tools (`generate_practice_quiz`, `get_student_progress`, `search_study_materials`) executed inside isolated `AsyncSessionLocal()` database sessions with `user_id` bound in closures.
-- **Rubric-Based Essay Grading**: Evaluates student essays against structured 12-point JSON rubrics with prompt-injection delimiting and per-criterion score clamping.
+- **Rubric-Based Essay Grading**: Evaluates student essays against configurable JSON rubrics (seeded with a 12-point default) with prompt-injection delimiting and per-criterion score clamping.
 - **Authenticated FastMCP Server**: Exposes 2 tools, 1 resource (`study-material://{material_id}`), and 1 prompt (`ged_sat_tutor_prompt`) over Bearer-guarded HTTP (`/mcp`) and local stdio (`python -m app.mcp.server`).
 - **Role-Based Authentication**: Argon2id password hashing (`pwdlib[argon2]`), constant-time verification when accounts do not exist, uniform `401` login responses, `HS256` JWTs (`60`-minute default expiry), and DB-backed `student` vs. `admin` role checks.
 
@@ -216,30 +214,33 @@ curl -X GET "http://localhost:8000/api/v1/quizzes/attempts/my" \
 ```
 
 ### MCP Server (HTTP `/mcp` & stdio)
-```bash
-# Unauthenticated requests to /mcp return 401
-curl -i -X POST "http://localhost:8000/mcp" \
-  -H "Content-Type: application/json" \
-  -d '{"jsonrpc": "2.0", "id": 1, "method": "initialize"}'
 
-# Authenticated MCP initialize handshake over HTTP
-curl -X POST "http://localhost:8000/mcp" \
-  -H "Authorization: Bearer <TOKEN>" \
-  -H "Content-Type: application/json" \
-  -H "Accept: application/json, text/event-stream" \
-  -d '{
-    "jsonrpc": "2.0",
-    "id": 1,
-    "method": "initialize",
-    "params": {
-      "protocolVersion": "2024-11-05",
-      "capabilities": {},
-      "clientInfo": {"name": "cli", "version": "1.0"}
+Exposes 2 tools (`search_study_materials`, `generate_practice_quiz`), 1 resource (`study-material://{material_id}`), and 1 prompt (`ged_sat_tutor_prompt`) delegating directly to the same domain services.
+
+- **Remote HTTP (`/mcp`, Bearer JWT required — unauthenticated callers receive `401`):**
+```json
+{
+  "mcpServers": {
+    "omnitest": {
+      "url": "https://omnitest-6fed.onrender.com/mcp",
+      "headers": {
+        "Authorization": "Bearer <TOKEN>"
+      }
     }
-  }'
+  }
+}
+```
 
-# Local stdio transport
-uv run python -m app.mcp.server
+- **Local stdio (IDE / AI Agent CLI):**
+```json
+{
+  "mcpServers": {
+    "omnitest": {
+      "command": "uv",
+      "args": ["run", "python", "-m", "app.mcp.server"]
+    }
+  }
+}
 ```
 
 ---
