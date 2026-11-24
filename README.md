@@ -29,7 +29,7 @@ OmniTest is an exam-preparation API and AI tutoring agent built for **GED and Di
 ```mermaid
 flowchart TD
     subgraph Clients["Clients"]
-        UI["Web Frontend (frontend branch)"]
+        UI["Web Frontend (SolidJS SPA)"]
         MCPClient["MCP Client (IDE / CLI Agent)"]
     end
 
@@ -123,7 +123,7 @@ All `58` non-`__init__.py` source files across `app/` and `scripts/` are kept co
 
 ### 1. Environment Setup
 ```bash
-git clone https://github.com/MushfiqPlabon/OmniTest.git
+git clone -b phi-assign --single-branch https://github.com/MushfiqPlabon/OmniTest.git
 cd OmniTest
 cp .env.example .env
 ```
