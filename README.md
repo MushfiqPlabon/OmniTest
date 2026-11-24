@@ -71,7 +71,7 @@ sequenceDiagram
     participant DB as PostgreSQL (pgvector)
     participant LLM as Gemini API
 
-    rect rgb(240, 248, 255)
+    rect rgba(59, 130, 246, 0.12)
     note over User,LLM: Flow 1: Auth & CRUD (JWT + RBAC)
     User->>API: POST /auth/login or POST /materials (Bearer JWT)
     API->>DB: Verify Argon2id hash / check admin role
@@ -79,7 +79,7 @@ sequenceDiagram
     API-->>User: 200 OK / 201 Created
     end
 
-    rect rgb(255, 250, 240)
+    rect rgba(245, 158, 11, 0.12)
     note over User,LLM: Flow 2: RAG Search + Schema-Validated Tool Calling
     User->>API: POST /chat
     API->>DB: pgvector cosine search (<=>) on knowledge_chunks
