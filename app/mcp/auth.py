@@ -8,6 +8,7 @@ and exposes the verified `user_id` via a request-scoped `ContextVar`.
 
 import json
 from contextvars import ContextVar
+from typing import Any
 
 from starlette.types import ASGIApp, Receive, Scope, Send
 
@@ -69,3 +70,42 @@ class MCPBearerAuthMiddleware:
             await self.app(scope, receive, send)
         finally:
             current_mcp_user_id.reset(ctx_token)
+
+
+def document_mcp_openapi(schema: dict[str, Any]) -> dict[str, Any]:
+    """Document the `/mcp` FastMCP Streamable HTTP endpoint in OpenAPI & Swagger."""
+    schema.setdefault("paths", {})["/mcp"] = {
+        "post": {
+            "tags": ["MCP"],
+            "summary": "Model Context Protocol (Streamable HTTP)",
+            "description": (
+                "Authenticated FastMCP Streamable HTTP endpoint (also accepts GET/DELETE for session streams). "
+                "Exposes tools (`search_study_materials`, `generate_practice_quiz`), resource "
+                "(`study-material://{material_id}`), and prompt (`ged_sat_tutor_prompt`)."
+            ),
+            "security": [{"HTTPBearer": []}],
+            "requestBody": {
+                "required": True,
+                "content": {
+                    "application/json": {
+                        "schema": {"type": "object"},
+                        "example": {
+                            "jsonrpc": "2.0",
+                            "id": 1,
+                            "method": "initialize",
+                            "params": {
+                                "protocolVersion": "2024-11-05",
+                                "capabilities": {},
+                                "clientInfo": {"name": "swagger", "version": "1.0"},
+                            },
+                        },
+                    }
+                },
+            },
+            "responses": {
+                "200": {"description": "MCP JSON-RPC / SSE response"},
+                "401": {"description": "Missing, invalid, or expired Bearer JWT"},
+            },
+        }
+    }
+    return schema

@@ -11,6 +11,7 @@ from contextlib import asynccontextmanager
 
 from fastapi import APIRouter, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.openapi.utils import get_openapi
 from fastapi.responses import RedirectResponse
 from fastapi_pagination import add_pagination
 from starlette.middleware import Middleware
@@ -21,7 +22,7 @@ from app.core.config import settings
 from app.core.database import engine
 from app.core.exceptions import register_exception_handlers
 from app.core.schemas import HealthResponse
-from app.mcp.auth import MCPBearerAuthMiddleware
+from app.mcp.auth import MCPBearerAuthMiddleware, document_mcp_openapi
 from app.mcp.server import mcp
 from app.modules.auth.controllers import router as auth_router
 from app.modules.chat.controllers import router as chat_router
@@ -114,6 +115,15 @@ async def v1_health_check() -> HealthResponse:
 
 app.include_router(api_v1_router)
 app.router.routes.append(Route("/mcp", endpoint=mcp_app, methods=["GET", "POST", "DELETE"], include_in_schema=False))
+
+def _custom_openapi():
+    """Return cached OpenAPI schema with the mounted `/mcp` endpoint documented."""
+    if not app.openapi_schema:
+        raw = get_openapi(title=app.title, version=app.version, description=app.description, routes=app.routes)
+        app.openapi_schema = document_mcp_openapi(raw)
+    return app.openapi_schema
+
+app.openapi = _custom_openapi
 
 
 @app.get("/", include_in_schema=False)
